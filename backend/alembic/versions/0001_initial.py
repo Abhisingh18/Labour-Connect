@@ -14,12 +14,19 @@ down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
-user_role = sa.Enum("customer", "worker", "admin", name="userrole")
+# create_type=False: we create the enum types explicitly below (checkfirst),
+# so table creation must NOT try to auto-create them again (avoids
+# "type already exists" on PostgreSQL).
+user_role = sa.Enum(
+    "customer", "worker", "admin", name="userrole", create_type=False
+)
 booking_status = sa.Enum(
-    "pending", "accepted", "rejected", "completed", "cancelled", name="bookingstatus"
+    "pending", "accepted", "rejected", "completed", "cancelled",
+    name="bookingstatus", create_type=False,
 )
 kyc_status = sa.Enum(
-    "not_submitted", "pending", "verified", "rejected", name="kycstatus"
+    "not_submitted", "pending", "verified", "rejected",
+    name="kycstatus", create_type=False,
 )
 
 
