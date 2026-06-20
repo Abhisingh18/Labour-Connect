@@ -14,27 +14,26 @@ down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
-# create_type=False: we create the enum types explicitly below (checkfirst),
-# so table creation must NOT try to auto-create them again (avoids
-# "type already exists" on PostgreSQL).
-user_role = sa.Enum(
-    "customer", "worker", "admin", name="userrole", create_type=False
-)
+# Each enum is used by exactly one table, so we let the table's CREATE handle
+# the enum type creation (once each). No explicit .create() — that caused a
+# double CREATE TYPE on PostgreSQL ("type already exists").
+user_role = sa.Enum("customer", "worker", "admin", name="userrole")
 booking_status = sa.Enum(
-    "pending", "accepted", "rejected", "completed", "cancelled",
-    name="bookingstatus", create_type=False,
+    "pending", "accepted", "rejected", "completed", "cancelled", name="bookingstatus"
 )
 kyc_status = sa.Enum(
-    "not_submitted", "pending", "verified", "rejected",
-    name="kycstatus", create_type=False,
+    "not_submitted", "pending", "verified", "rejected", name="kycstatus"
 )
 
 
 def upgrade() -> None:
     bind = op.get_bind()
-    user_role.create(bind, checkfirst=True)
-    booking_status.create(bind, checkfirst=True)
-    kyc_status.create(bind, checkfirst=True)
+    # Clean any leftover enum types from a previous failed deploy (Postgres only;
+    # SQLite has no native enum types). Safe here because no tables exist yet.
+    if bind.dialect.name == "postgresql":
+        op.execute("DROP TYPE IF EXISTS userrole")
+        op.execute("DROP TYPE IF EXISTS bookingstatus")
+        op.execute("DROP TYPE IF EXISTS kycstatus")
 
     op.create_table(
         "users",
