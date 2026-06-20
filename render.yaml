@@ -1,0 +1,40 @@
+# Render.com Blueprint — deploys the FastAPI backend + a managed PostgreSQL.
+# In Render: New + → "Blueprint" → connect this GitHub repo → it reads this file.
+databases:
+  - name: labour-connect-db
+    plan: free
+    databaseName: labour_connect
+    user: labour
+
+services:
+  - type: web
+    name: labour-connect-api
+    runtime: docker
+    plan: free
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: labour-connect-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: OTP_MOCK
+        value: "true"
+      - key: DEV_OTP_CODE
+        value: "123456"
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "15"
+      - key: REFRESH_TOKEN_EXPIRE_DAYS
+        value: "30"
+      - key: FIRST_ADMIN_EMAIL
+        value: admin@labourconnect.in
+      - key: FIRST_ADMIN_PASSWORD
+        value: Admin@123
+      - key: FIRST_ADMIN_NAME
+        value: Super Admin
+      - key: BACKEND_CORS_ORIGINS
+        value: "*"

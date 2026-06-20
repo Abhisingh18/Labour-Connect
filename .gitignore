@@ -1,0 +1,34 @@
+# ---- Python / backend ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+backend/.env
+*.sqlite3
+backend/labour.db
+backend/backend.log
+backend/uploads/
+.pytest_cache/
+.mypy_cache/
+
+# ---- Node / admin ----
+node_modules/
+admin/dist/
+admin/.env
+*.local
+
+# ---- Flutter / mobile ----
+mobile/.dart_tool/
+mobile/build/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/android/.gradle/
+mobile/android/local.properties
+mobile/.idea/
+mobile/ios/Pods/
+
+# ---- misc ----
+.DS_Store
+.vscode/
+*.log
