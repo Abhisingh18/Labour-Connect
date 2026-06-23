@@ -1,7 +1,7 @@
 name: labour_connect
 description: Labour Connect — find and book skilled service workers near you.
 publish_to: "none"
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: ">=3.6.0 <4.0.0" # Flutter 3.27+ (uses Color.withValues)
@@ -38,8 +38,17 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/branding/icon_1024.png"
+  adaptive_icon_background: "#4F46E5"
+  adaptive_icon_foreground: "assets/branding/icon_foreground.png"
+  min_sdk_android: 21
 
 flutter:
   uses-material-design: true

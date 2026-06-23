@@ -1,0 +1,41 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1024" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#4F46E5"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.3" cy="0.25" r="0.9">
+      <stop stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hat" x1="512" y1="330" x2="512" y2="660" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#EEF2FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- rounded squircle background -->
+  <rect width="1024" height="1024" rx="232" fill="url(#bg)"/>
+  <rect width="1024" height="1024" rx="232" fill="url(#glow)"/>
+
+  <!-- cute spark (amber) top-right -->
+  <g fill="#F59E0B">
+    <path d="M742 250c14 0 16 2 16 36 0-34 2-36 16-36-14 0-16-2-16-36 0 34-2 36-16 36z"/>
+    <circle cx="800" cy="318" r="11"/>
+  </g>
+
+  <!-- hard hat -->
+  <g>
+    <!-- brim -->
+    <path d="M250 612c0-20 16-34 36-34h452c20 0 36 14 36 34 0 26-22 44-50 44H300c-28 0-50-18-50-44z" fill="url(#hat)"/>
+    <!-- front brim lip -->
+    <path d="M398 656h228c-8 30-44 44-114 44s-106-14-114-44z" fill="#E0E7FF"/>
+    <!-- dome -->
+    <path d="M324 596c0-118 84-214 188-214s188 96 188 214c0 8-6 14-14 14H338c-8 0-14-6-14-14z" fill="url(#hat)"/>
+    <!-- center ridge -->
+    <rect x="494" y="372" width="36" height="232" rx="18" fill="#E0E7FF"/>
+    <!-- side ridges -->
+    <path d="M430 408c-44 28-74 92-74 188 0 8 6 14 14 14h26c-6-90 6-150 34-202z" fill="#E0E7FF" opacity="0.85"/>
+    <path d="M594 408c44 28 74 92 74 188 0 8-6 14-14 14h-26c6-90-6-150-34-202z" fill="#E0E7FF" opacity="0.85"/>
+  </g>
+</svg>
